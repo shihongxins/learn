@@ -25,7 +25,7 @@ $ git init
 所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。
 	
 ### 添加文件到Git版本库  
-#### 第一步，使用命令```$ git add <files>```，注意，可反复多次使用，添加多个文件；
+#### 第一步，使用命令```$ git add <filename>```，注意，可反复多次使用，添加多个文件；
 注：批量操作
 ```
 $ git add .		#新增、修改、删除
@@ -49,6 +49,8 @@ $ git add --ignore-removal. 	#新增、修改
 回到上一版本（回到了昨天）。如果我又后悔回退，想回到最新版本（返回今天），只要窗口未关闭，我们可以通过commit id 返回到指定版本。但如果窗口关闭了，记不得commit id。我们可以用```$ git reflog```查看历史命令获得具体commit id，然后回到相应版本。
 
 工作区，即我电脑里能够看到的目录。版本库即工作区里面的.Git目录，里面又包括stage（暂存区）和Git自动为我们创建的第一个分支 master 及指向master分支的第一个指针HEAD。  
+图示
+![工作区 暂存区 版本库](https://camo.githubusercontent.com/b3d7b546b4a699a8c010c58a3f28571757682bfc/68747470733a2f2f63646e2e6c69616f78756566656e672e636f6d2f63646e2f66696c65732f6174746163686d656e74732f30303133383439303737323034353865353637353164663163343734343835623639373537353037336334306165393030302f30)
 ```
 $ git diff    #是工作区(work dict)和暂存区(stage)的比较
 $ git diff --cached    #是暂存区(stage)和版本库(repository)的比较
@@ -60,12 +62,12 @@ $ git diff HEAD -- <filename>  #是工作区(work dict)与版本库(repository)�
 错误编辑了文件已经添加到缓存区(stage)但还未提交到版本库(repository)中时，使用```$ git reset HEAD <filename>```可以撤销缓存区(stage)修改，将文件重新放回工作区(work dict)，然后在丢弃工作区修改```$ git checkout -- <filename>```。  
 错误编辑了文件已经添加并且提交到版本库，只有**版本回退**了，接着撤销缓存区修改，最后丢弃工作区修改。且前提是还没有推送到远程仓库。  
 
-如果我添加并且提交某一文件到版本库后，我又删除了文件（通过资源管理器直接删除，或者通过 rm <file> 命令删除），Git会检测到我在工作区已经删除了文件，但在版本库还未删除，也是工作区就和暂存区不同。那么我有两种选择：  
+如果我添加并且提交某一文件到版本库后，我又删除了文件（通过资源管理器直接删除，或者通过 rm <filename> 命令删除），Git会检测到我在工作区已经删除了文件，但在版本库还未删除，也是工作区就和暂存区不同。那么我有两种选择：  
 > 一是确定要删除文件，则要通过```$ git rm <filename>```命令从暂存区删除后，在通过```$ git commit -m "xxx"```命令提交到版本库。  
 > 二是错误删除文件，则要通过```$ git checkout -- <filename>``` 命令从暂存区恢复。  
 
-重点是如果我用```$ git rm <file>``` 命令后，我已经删除了本地文件和同步删除动作到缓存区（即缓存区文件也被删除），那么我是无法通过```$ git checkout -- <file>```找回文件的，我只能从```$ git reset HEAD <file>```从版本库找回，再用```$ git checkout -- <file>```丢弃工作区修改。  
-如果既用了```$ git rm <file>```又用```$ git commit -m "xxx"```后，我是无法通过```$ git reset HEAD <file>```找回的，只能通过版本回退```$ git reset --hard HEAD^```在按前面步骤找回。
+重点是如果我用```$ git rm <filename>``` 命令后，我已经删除了本地文件和同步删除动作到缓存区（即缓存区文件也被删除），那么我是无法通过```$ git checkout -- <filename>```找回文件的，我只能从```$ git reset HEAD <filename>```从版本库找回，再用```$ git checkout -- <filename>```丢弃工作区修改。  
+如果既用了```$ git rm <filename>```又用```$ git commit -m "xxx"```后，我是无法通过```$ git reset HEAD <filename>```找回的，只能通过版本回退```$ git reset --hard HEAD^```在按前面步骤找回。
 
 ### 远程仓库GitHub
 Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。实际情况往往是这样，找一台电脑充当服务器的角色，每天24小时开机，其他每个人都从这个“服务器”仓库克隆一份到自己的电脑上，并且各自把各自的提交推送到服务器仓库里，也从服务器仓库中拉取别人的提交。这个世界上有个叫GitHub的神奇的网站，从名字就可以看出，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程仓库。
@@ -85,14 +87,69 @@ clone 远程仓库到本地版本库
 
 Git鼓励大量使用分支：
 ```
-$ git branch    #查看分支
-$ git branch <branchname>     #创建分支
-$ git checkout <branchname>   #切换分支
-$ git checkout -b <branchname>    #创建+切换分支
-$ git merge <branchname>      #合并某分支到当前分支
-$ git branch -d <branchname>  #删除分支
+$ git branch     #查看分支
+$ git branch <branchname>   #创建分支
+$ git checkout <branchname>     #切换分支
+$ git checkout -b <branchname>  #创建+切换分支
+$ git merge <branchname>        #合并某分支到当前分支
+$ git branch -d <branchname>    #删除(已合并)分支
+$ git branch -D <branchname>    #丢弃(未合并)分支
 ```
 	
-如果我们新建一个分支并且在这个新建分支上修改文件并提交到版本库后，切换回主分支又再次修改文件提交到版本库。然后我们再合并分支时就会出现冲突，我们可以用```$ git status``` 查看==冲突文件==，然后打开冲突文件，里面有标明冲突内容，手动修改后就可以合并分支啦。最后别忘了删除新建分支，用```$ git log --graph --pretty=oneline --abbrev-commit``` 查看分支合并图。
-通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。合并分支时，加上--no-ff参数就可以用普通模式合并 $ git log --graph --pretty=oneline --abbrev-commit ，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+如果我们新建一个分支并且在这个新建分支上修改文件并提交到版本库后，切换回主分支又再次修改文件提交到版本库。然后我们再合并分支时就会出现冲突，我们可以用```$ git status``` 查看==冲突文件==，然后打开冲突文件，里面有标明冲突内容，手动修改后就可以合并分支啦。最后别忘了删除新建分支，用```$ git log --graph (--pretty=oneline --abbrev-commit)``` 查看分支合并图。  
+#### 分支合并模式
+通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。合并分支时，加上--no-ff参数就可以用普通模式合并```$ git merge --no-ff -m "普通模式合并分支会产生一次提交" <branchname>```，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。  
+#### 分支策略
++ master 分支仅用于版本发布，不能在上面干活，是很稳定的。
++ dev 分支是干活的主要场所，当新的开发完成时在合并到 master 分支。
++ 每个人都有自己的 dev 分支，开发完成后合并到 dev 分支。
+#### BUG分支
+当我们正在 dev 上开发，还没完成不能提交时，可以用 stash 功能将未完成的工作现场，保存起来，等BUG修改完成后在恢复工作现场。  
+如，
++ 先用```$ git status```查看出有未添加准备提交的新修改。
++ 用```$git stash```保存工作现场。
++ 再用```$git status```查看到 工作区是干净的
++ 切换到出BUG的分支如 master，```$git checkout master```
++ 创建并切换到BUG分支```$git checkout -b bug01```
++ 修复BUG后添加并提交 ```$git add .```   
+    ```$git commmit -m "fixed bug01"```
++ 切换回 master 并合并BUG分支```$git checkout master```  
+    ```$git merge --no-ff -m "fixed bug01 and merged it" bug01```
++ 删除BUG分支```$git branch -d bug01```
++ 切换回自己的dev分支```$git checkout dec```
++ 查看工作区```$git status``` 是干净的，那我工作到一半的dev在哪？
++ 用```$git stash list```查看保存的工作现场
++ 用```$git stash apply stash@{0}```来恢复指定的工作现场  
+    然后手动删除工作现场```$git stash drop stash@{0}```
+    或者直接用```$git stash pop```恢复并删除最近的工作现场。
+
+既然master上面有BUG，那么可能dev上也有同样的BUG，怎么不重复上面的复杂操作修改dev上的BUG呢？用```$git cherry-pick <commit_id>```直接复制修复BUG的修改到当前分区
+
+#### 多人协作
++ 查看远程库信息 ```$git remote```
++ 查看远程库详细信息 ```$git remote -v```
++ 在本地创建远程的dev分支```$git checkout -b dev origin/dev```
++ 推送分支 ```$git push origin <armbranch>```
++ 提交失败有冲突时，先将远程的最新改动拉取过来```$git pull```
++ 拉取失败，可能是拉取的远程分支origin/dev与本地dev没有建立联系关系，用```$git branch --set-upstream-to=origin/dev dev```
+建立或者```$git branch --set-upstream dev origin/dev```
+
+### 标签
+标签就是一个有意义的名字，跟commit_id绑定。  
+>注意：标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。
++ 新打一个标签 ```$git tag <tagname>```  
+    (默认打在最近的一次提交上)
++ 在历史提交上打标签 ```$git tag <tagname> <commit_id>```
++ 查看所有标签```$git tag```
++ 给标签添加详细说明```$git tag -a <tagname> -m "详细说明" (<commit_id>)```
++ 查看标签详细信息 ```$git show <tagname>```
++ 删除标签```$git tag -d <tagname>```
++ 推送一个标签```$git push origin <tagname>```
++ 推送所有标签```$git push origin --tags```
++ 删除远程标签  
+  - 先```$git tag -d <tagname>```  
+  - 再```$git push origin :refs/tags/<tagname>```
+
+
+
 
