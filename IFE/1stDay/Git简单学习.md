@@ -116,7 +116,7 @@ $ git branch -D <branchname>    #丢弃(未合并)分支
 + 切换回 master 并合并BUG分支```$git checkout master```  
     ```$git merge --no-ff -m "fixed bug01 and merged it" bug01```
 + 删除BUG分支```$git branch -d bug01```
-+ 切换回自己的dev分支```$git checkout dec```
++ 切换回自己的dev分支```$git checkout dev```
 + 查看工作区```$git status``` 是干净的，那我工作到一半的dev在哪？
 + 用```$git stash list```查看保存的工作现场
 + 用```$git stash apply stash@{0}```来恢复指定的工作现场  
