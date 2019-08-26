@@ -100,11 +100,55 @@ p{background-color:blue;}
 + 通过```<a>```标签来创建链接到其他位置的链接
 + 通过```<a>```标签的 **href** 属性，链接到目标位置，可以是文档地址，也可以是某一锚点
 + 通过```<a>```标签的 **name** 属性，创建锚点。
-+ 通过```<a>```标签的 **target** 属性，指定新文档的打开位置。  
++ 通过```<a>```标签的 **target** 属性，指定新文档的打开位置。 
+
 目标位置 | target
 ---|---
 新标签页 | _blank
+当前页|_self
+上级窗口|_parent
+顶层窗口|_top
+指定框架<br />(name="farmename")|farmename
+  
++ ```<a href="http://www.w3school.com.cn/html/html_links.asp#tips/" target="_blank">有用的提示</a>```  
+表示，在新的标签页打开http://www.w3school.com.cn/html/html_links.asp页面并定位到tips描点。
++ href 尽量补全 \\ ，否则会产生两次请求。
++ ```<a>```标签发送邮件，是在 href 属性添加相对应的值。如  
+  - ```<a href="mailto:someaddress@mail.com?cc=ccadress@mail.com&bcc=bccaddress@mail.com&subject=mailsubject&body=mailbody">发送邮件链接</a>```
 
+### 图像
+通过```<img />```标签在页面中插入显示图像。  
++ 用 src="" 属性指定图像位置
++ 用 alt="" 属性作为替代文本
++ usemap="#mapid" 属性指定图像映射
+>图像映射：用```<map>和<area>```标签，在图像上分区域进行传教不同区域的链接  
+>```html
+><map id="mapid" name="mapid">
+>   <area shape="circ" coords="180,120,30" href="" alt="" target="">
+></map>
+>```
+注：  
+
+shape|circ|rect|poly|default
+---|---|---|---|---
+coords|x,y,r|x1,y1,x2,y2|x1,y1,x2,y2,...|x1,y1,x2,y2
+解释|圆心坐标和半径|矩形对角坐标|三组以上点坐标|默认矩形，找不到不生效
+
+### 表格
++ 表格边框显示，用border="1"属性
++ 空单元格会被隐藏，解决 填充 ```&nbsp;```
++ 表格标题，用```<caption>```标签
++ ```<td>与<th>```跨行和跨列,用 colspan 和 rowspan 属性
++ 内容对齐
+    - 水平：align="left|center|justfy|right"
+    - 垂直：valign="top|middle|baseline|bottom"  
+
+其他样式请使用css。
+
+## 布局
++ table布局
++ div布局
++ html5语义布局
 
 ### 其他
 - 注释：```<!-- 这是注释，不会被浏览器解析 -->```，注意 ___条件注释___
