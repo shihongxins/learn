@@ -63,8 +63,8 @@ $ git diff HEAD -- <filename>  #是工作区(work dict)与版本库(repository)�
 错误编辑了文件已经添加并且提交到版本库，只有**版本回退**了，接着撤销缓存区修改，最后丢弃工作区修改。且前提是还没有推送到远程仓库。  
 
 如果我添加并且提交某一文件到版本库后，我又删除了文件（通过资源管理器直接删除，或者通过 rm <filename> 命令删除），Git会检测到我在工作区已经删除了文件，但在版本库还未删除，也是工作区就和暂存区不同。那么我有两种选择：  
-> 一是确定要删除文件，则要通过```$ git rm <filename>```命令从暂存区删除后，在通过```$ git commit -m "xxx"```命令提交到版本库。  
-> 二是错误删除文件，则要通过```$ git checkout -- <filename>``` 命令从暂存区恢复。  
++ 一是确定要删除文件，则要通过```$ git rm <filename>```命令从暂存区删除后，在通过```$ git commit -m "xxx"```命令提交到版本库。  
++ 二是错误删除文件，则要通过```$ git checkout -- <filename>``` 命令从暂存区恢复。  
 
 重点是如果我用```$ git rm <filename>``` 命令后，我已经删除了本地文件和同步删除动作到缓存区（即缓存区文件也被删除），那么我是无法通过```$ git checkout -- <filename>```找回文件的，我只能从```$ git reset HEAD <filename>```从版本库找回，再用```$ git checkout -- <filename>```丢弃工作区修改。  
 如果既用了```$ git rm <filename>```又用```$ git commit -m "xxx"```后，我是无法通过```$ git reset HEAD <filename>```找回的，只能通过版本回退```$ git reset --hard HEAD^```在按前面步骤找回。
