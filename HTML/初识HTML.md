@@ -56,9 +56,9 @@ HTML中含有对文本输出格式调整的标签，如：
 <br />
 <strong>这行文本是加粗强调</strong>
 <br />
-<em>这行文本是斜体强调</em>
-<br />
 <i>这行文本是斜体</i>
+<br />
+<em>这行文本是斜体强调</em>
 <br />
 <big>这行文本是变大</big>
 <br />
@@ -88,7 +88,7 @@ HTML中含有对文本输出格式调整的标签，如：
 ```html
 <style>
 p{background-color:blue;}
-//其他css代码
+/*其他css代码*/
 </style>
 ```
 - 内联式
@@ -108,10 +108,10 @@ p{background-color:blue;}
 当前页|_self
 上级窗口|_parent
 顶层窗口|_top
-指定框架<br />(name="farmename")|farmename
+指定框架<br />(name="framename")|framename
   
 + ```<a href="http://www.w3school.com.cn/html/html_links.asp#tips/" target="_blank">有用的提示</a>```  
-表示，在新的标签页打开 ```http://www.w3school.com.cn/html/html_links.asp``` 页面并定位到tips描点。
+表示，在新的标签页打开 ```http://www.w3school.com.cn/html/html_links.asp``` 页面并定位到 __tips__ 描点。
 + href 尽量补全 \/ ，否则会产生两次请求。
 + ```<a>```标签发送邮件，是在 href 属性添加相对应的值。如  
   - ```<a href="mailto:someaddress@mail.com?cc=ccadress@mail.com&bcc=bccaddress@mail.com&subject=mailsubject&body=mailbody">发送邮件链接</a>```
@@ -168,7 +168,7 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
 + 决定路径：目标的具体位置。
 
 ### HTML头部
-+ ```<head>```头部标签中可使用的标签有 ```<title>,<base />,<meta />,<link />,<style>,<script>```。
++ ```<head>```头部标签中可使用的标签有 ```<title>,<base />,<meta />,<script>,<link />,<style>```。
 + ```<base>```用于指定一个文档内的相对 url 的基准根 url，和新文档打开的位置，分别用 href 和 target 实现。
 + ```<meta>```用于表示其他头部标签不能表示的元数据信息。主要有：
     - charset="UTF-8" 设置页面编码(HTML 5)，注意要与文档保存编码一致。
@@ -197,7 +197,7 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
 + URL 即 统一资源定位器 。
 + scheme://host.domain:port/path/filename
 + 协议://主机.域名:端口号/路径/文件
-+ URL 只能通过 ASCII 码传输，其余编码通过 __%+16进制数__ 代替，空格用 __\+__ 代替
++ URL 只能通过 ASCII 码传输，其余编码通过 __%号 加 16进制数__ 代替，空格用 __\+__ 代替
 
 ### HTML颜色
 + 颜色由红绿蓝三种颜色组合而来。
@@ -220,7 +220,7 @@ outline-color 轮廓颜色
 注意的标签：
 + 用```<fieldset>``` 组合表单相关控件，```<legend>```为组合标题。  
 + HTML 5新表单元素 ```<datalist>```和```<output>```
-    - ```<datalist>``` 类似于 ```<select>``` ，用```<option>```给```<input>```提供可选值，两者的关联是 ```<input>```的 __list__ 属性 等于 ```<datalist>```的 __id__ 。IE 10=+ (其他不兼容的先引用 [polyfill](https://github.com/mfranzke/datalist-polyfill) )
+    - ```<datalist>``` 类似于 ```<select>``` ，用```<option>```给```<input>```提供可选值，两者的关联是 ```<input>```的 __list__ 属性 等于 ```<datalist>```的 __id__ 。IE 10=+ (其他不兼容的先引用 [polyfill](https://github.com/mfranzke/datalist-polyfill) IE 9=+ )
     - ```<output>```用处不大，见 [例子](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/output#Example)
 
 常用属性：
@@ -247,7 +247,9 @@ url|网站输入验证
 tel|电话输入验证
 search|搜索字段
 
-HTML5 新增输入限制(属性)
+
+HTML5 新增输入限制(属性)  
+
 限制|解释
 --|--
 maxlength|输入最大字符数
@@ -259,7 +261,7 @@ step|值的跨步间隔
 required|是否必填
 list|建议可选项```<datalist>```
 multiple|file或email可多选
-placeholder|空值时提示内容
+placeholder|空值时提示内容 IE 10=+
 autofocus|自动对焦(true\|false)
 autocomplete|自动填充(on\|off)
 form*|对```<form>```表单的属性覆盖等
@@ -270,7 +272,7 @@ form*|对```<form>```表单的属性覆盖等
 + 声明 ```<!DOCTYPE html>```
 + 旧浏览器支持语义标签，且显示为块级元素。  
     ```html
-    header,nav,main,section,article,aside,footer,figure{
+    header,nav,main,article,section,aside,footer,figure,summary,details,process{
         display:block;
     }
     ```
@@ -278,7 +280,7 @@ form*|对```<form>```表单的属性覆盖等
     ```html
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
-    <--[endif]>
+    <![endif]-->
 
     <!-- 如果你使用的标签少的话可以直接用手动创建而不用引入上述文件 -->
     <!--[if lt IE 9]>
@@ -289,6 +291,7 @@ form*|对```<form>```表单的属性覆盖等
         document.createElement('aside');
         document.createElement('footer');
     </script>
+    <![endif]-->
     ```
     注：  
         以上 css 和 script 应在头部使用    
@@ -308,6 +311,39 @@ form*|对```<form>```表单的属性覆盖等
 ```<dialog> ```|对话框，以 open="true\|false" 展示或隐藏|原兼容性不佳，但有相对应的 [Polyfill](https://github.com/GoogleChrome/dialog-polyfill) 很不错 IE 9=+
 ```<canvas>```|图像绘制|IE 9=+
 ```<svg>```| 图像绘制 | ???
+```<embed>```|嵌入内容到文档中，该内容由其他程序提供实现，如浏览器插件。| 不支持IE
+```<object>```|引入外部资源到页面内，常与```<param>```标签定义| 仅 IE  
+```<param>```|定义```<object>```的参数，主要属性 name(参数名)，value(参数值)，type(MIME类型)| 仅 IE
+```<source>```|为```<picture>```,```<audio>```,```<video>```指定资源地址，主要属性 src 和 type | IE 9=+
+```<audio>```|在文档中引入音频内容，由 src 属性或者 ```<source>```标签指定内容链接地址，详见 [\<audio\>](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio)| IE 9=+  
+```<video>```|在文档内嵌入媒体播放器，由 src 属性或者 ```<source>```标签指定链接地址，详见 [\<video\>](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video) | IE 9=+  
+> 注：上述多媒体标签中，一般使用时为了兼容低浏览器会采用 ```HTML 5 + <object> + <embed> ``` 方式实现。
+
+### HTML 5 新API  
++ 地理位置 [Geolocation](https://www.w3school.com.cn/html/html5_geolocation.asp) API 用于获得用户的地理位置。
+    - 检测是否支持 navigator.geolocation
+    - navigator.geolocation.getCurrentPosition(succFun[,errFun,opt]);   
+    获取当前地理位置，参数为方法句柄和配置对象。  
+    定位成功，succFun(position)方法接受一个 __coordinates__ 对象，其属性包括经纬度，海拔，精度，速度，方向等。  
+    定位失败，errFun(error)方法接收一个错误信息对象，包括用户拒绝，无法定位，超时，未知等错误状态。  
+    opt对象为
+    ```javascript
+        var opt = {
+            enableHighAccuracy:true,//IP的精确定位
+            timeout:60000,//超时时间
+            maximumAge:10000//位置缓存时间
+        }
+    ```
+    - navigator.geolocation.watchPosition(succFun[,errFun,opt]);  
+    监控位置变化，不断返回位置信息。  
+    参数同上，但会返回一个 __watchID__ ，便于停止监控。
+    - navigator.geolocation.clearWatch(watchID);  
+    停止监控位置变化。  
+    >注： IE 9 =+
++ 拖放 [drag](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/drag_event) API 实现元素的拖放
+
++ 本地存储 [Local Storage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
+
 
 
 ### 其他
