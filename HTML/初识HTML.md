@@ -8,7 +8,7 @@
 ### 属性
 - 大部分标签元素拥有属性，属性提供了这个元素的更多信息。
 - 属性总是写在元素的开始标签中。
-- 属性一般以键值对出现，如：type="text"
+- 属性一般以键值对出现，如：type="text"  
 大部分元素都拥有一下属性
 
 属性 | 说明
@@ -21,7 +21,7 @@ title | 元素的额外信息，显示提示
 ### 块级元素与内联元素
 - 元素一般分为两个重要内别，块级元素和内联元素。
 - 块级元素在页面中以块展示，默认情况会在其前后自动添加一个 __空行__，如：```<p> <div> <h1> <hr> <ul> <table>```等。
-- 内联元素通常出现在块级元素包裹的内容中，不会另起一行，如：```<a> <img> <input> <button>```等。
+- 内联元素通常出现在块级元素包裹的内容中，不会另起一行，如：```<a> <img> <input> <button> <span>```等。
 
 ### 文本格式化
 HTML中含有对文本输出格式调整的标签，如：
@@ -110,11 +110,15 @@ p{background-color:blue;}
 顶层窗口|_top
 指定框架<br />(name="framename")|framename
   
-+ ```<a href="http://www.w3school.com.cn/html/html_links.asp#tips/" target="_blank">有用的提示</a>```  
-表示，在新的标签页打开 ```http://www.w3school.com.cn/html/html_links.asp``` 页面并定位到 __tips__ 描点。
++ 在新的标签页打开 ```http://www.w3school.com.cn/html/html_links.asp``` 页面并定位到 __tips__ 描点。
+    ```html
+    <a href="http://www.w3school.com.cn/html/html_links.asp#tips/" target="_blank">有用的提示</a>
+    ```  
 + href 尽量补全 \/ ，否则会产生两次请求。
 + ```<a>```标签发送邮件，是在 href 属性添加相对应的值。如  
-  - ```<a href="mailto:someaddress@mail.com?cc=ccadress@mail.com&bcc=bccaddress@mail.com&subject=mailsubject&body=mailbody">发送邮件链接</a>```
+  ```html
+  <a href="mailto:someaddress@mail.com?cc=ccadress@mail.com&bcc=bccaddress@mail.com&subject=mailsubject&body=mailbody">发送邮件链接</a>
+  ```
 
 ### 图像
 通过```<img />```标签在页面中插入显示图像。  
@@ -172,6 +176,7 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
 + ```<base>```用于指定一个文档内的相对 url 的基准根 url，和新文档打开的位置，分别用 href 和 target 实现。
 + ```<meta>```用于表示其他头部标签不能表示的元数据信息。主要有：
     - charset="UTF-8" 设置页面编码(HTML 5)，注意要与文档保存编码一致。
+    - http-equiv="X-UA-Compatible" (设置IE8以后的浏览器对文档的渲染模式)，其 content="IE=Edge,chrome=1" 
     - http-equiv="content-type" ，设置文档编码(HTML 4)，其 content 值为 "text/html;charset=UTF-8"
     - content="" 指定 http-equiv 或 name 属性的值。
     - http-equiv="content-security-policy"内容安全策略?
@@ -197,7 +202,7 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
 + URL 即 统一资源定位器 。
 + scheme://host.domain:port/path/filename
 + 协议://主机.域名:端口号/路径/文件
-+ URL 只能通过 ASCII 码传输，其余编码通过 __%号 加 16进制数__ 代替，空格用 __\+__ 代替
++ URL 只能通过 ASCII 码传输，其余编码通过 __%号加16进制数__ 代替，空格用 __\+__ 代替
 
 ### HTML颜色
 + 颜色由红绿蓝三种颜色组合而来。
@@ -205,12 +210,10 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
 + 如 黑色 #000000 = rgb(0,0,0) ，白色 #FFFFFF = rgb(255,255,255)
 + rgb()中第四位参数 表示透明度 0 ~ 1 或 0% ~ 100% 
 + 可用颜色的地方：
-> 文本
->> color 字体色，background-color 文字背景色， text-shadow 文字阴影背景色，text-decoretion-color 文本装饰(下划线，删除线)颜色，caret-color 光标色  
-
-> 盒模型
->> background-color 盒模型背景色，border-color 边框颜色，
-outline-color 轮廓颜色  
+    - 文本
+        > color 字体色，background-color 文字背景色， text-shadow 文字阴影背景色，text-decoretion-color 文本装饰(下划线，删除线)颜色，caret-color 光标色  
+    - 盒模型
+        > background-color 盒模型背景色，border-color 边框颜色， outline-color 轮廓颜色  
 
 ### [文档声明<!DOCTYPE>](https://www.w3school.com.cn/tags/tag_doctype.asp)
 + 大类别 HTML 5 ，HTML 4.01 ，XHTML 1.0
@@ -234,13 +237,13 @@ HTML5 新输入类型(不支持的直接显示文本框text)：
 
 类型 | 解释
 ---|---
-color|颜色选择器
-date|日期选择器
 datetime-local|日期时间选择器
+date|日期选择器
 month|月份选择器
 week|年月周选择器
 time|时间选择器
 range|滑动范围选择控件
+color|颜色选择器
 number|数字输入验证
 email|邮箱验证输入
 url|网站输入验证
@@ -272,7 +275,7 @@ form*|对```<form>```表单的属性覆盖等
 + 声明 ```<!DOCTYPE html>```
 + 旧浏览器支持语义标签，且显示为块级元素。  
     ```html
-    header,nav,main,article,section,aside,footer,figure,summary,details,process{
+    header,nav,main,article,section,aside,footer,figure,summary,details,progress{
         display:block;
     }
     ```
@@ -304,9 +307,9 @@ form*|对```<form>```表单的属性覆盖等
 --|--|--
 ```<figure>```|组合一段内容为引用单元，<br/>图片，代码块，表格等。| IE 9=+
 ```<figcaption>```|```<figure>```组合的说明/标题| IE 9=+
-```<process>```|进度条，以 max 和 value 表示进度，<br />省略则为重复动画| IE 10=+
-```<details>```|详细信息折叠\|展示，不支持时直接显示| 不支持IE 与 Edge
-```<summary>```|详细信息的概要| 不支持 IE 与 Edge
+```<progress>```|进度条，以 max 和 value 表示进度，<br />省略则为重复动画| IE 10=+
+```<details>```|详细信息折叠\|展示，不支持时直接显示| 不支持IE 与 Edge，引用 [polyfill](https://github.com/mfranzke/datalist-polyfill) IE 9=+ 
+```<summary>```|详细信息的概要| 不支持 IE 与 Edge，引用 [polyfill](https://github.com/mfranzke/datalist-polyfill) IE 9=+ 
 ```<mark>```|高亮文本，表示关联系，重要性请用```<strong>```| IE 9=+
 ```<dialog> ```|对话框，以 open="true\|false" 展示或隐藏|原兼容性不佳，但有相对应的 [Polyfill](https://github.com/GoogleChrome/dialog-polyfill) 很不错 IE 9=+
 ```<canvas>```|图像绘制|IE 9=+
@@ -322,7 +325,7 @@ form*|对```<form>```表单的属性覆盖等
 ### HTML 5 新API  
 + 地理位置 [Geolocation](https://www.w3school.com.cn/html/html5_geolocation.asp) API 用于获得用户的地理位置。
     - 检测是否支持 navigator.geolocation
-    - navigator.geolocation.getCurrentPosition(succFun[,errFun,opt]);   
+    - ```navigator.geolocation.getCurrentPosition(succFun[,errFun,opt]);```   
     获取当前地理位置，参数为方法句柄和配置对象。  
     定位成功，succFun(position)方法接受一个 __coordinates__ 对象，其属性包括经纬度，海拔，精度，速度，方向等。  
     定位失败，errFun(error)方法接收一个错误信息对象，包括用户拒绝，无法定位，超时，未知等错误状态。  
@@ -334,21 +337,115 @@ form*|对```<form>```表单的属性覆盖等
             maximumAge:10000//位置缓存时间
         }
     ```
-    - navigator.geolocation.watchPosition(succFun[,errFun,opt]);  
+    - ```navigator.geolocation.watchPosition(succFun[,errFun,opt]);```  
     监控位置变化，不断返回位置信息。  
-    参数同上，但会返回一个 __watchID__ ，便于停止监控。
-    - navigator.geolocation.clearWatch(watchID);  
+    参数同上，但会返回一个 __watcher__ ，便于停止监控。
+    - ```navigator.geolocation.clearWatch(watcher);```  
     停止监控位置变化。  
-    >注： IE 9 =+
+    >注： IE 9 =+  
+
 + 拖放 [drag](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/drag_event) API 实现元素的拖放
+    - [DataTransfer](https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer)对象
+    - 在进行拖放操作时，DataTransfer 对象用来保存，通过拖放动作，拖动到浏览器的数据。仅能从 drag events 的 dataTransfer 属性上获取。
+    - 属性详解
+
+   属性|解释|值
+    --|--|--
+    effectAllowed|1 在 dragstart 时设置源数据期望的拖动效果<br /> 2 在 dragenter 和 dragover 时设置目标期望的效果| copy,move,link,none,all(默认)等  
+    dropEffect| 在 dragenter 和 dragover 时设置目标实际的效果| 值应该是 effectAllowed 的一种
+    file|从本地拖动文件时，包含的文件属性列表|files[i].name等拿去文件属性
+    types|保存一个被存储数据的类型列表作为第一项，顺序与被添加数据的顺序一致。有文件时默认 files | 1 text/plain (文本\|链接)<br /> 2 text/uri-list (链接) <br /> 3 text/html (HTML) <br /> 4 image/jpeg,image/png,image/gif (图片) <br /> 5 自定义
+
+    - 方法详解  
+
+    方法名|解释
+    --|--
+    obj.addElement(element);|添加要拖动的元素，一般不手动做会影响 dragend 事件  
+    obj.clearData(type);|清除指定类型的拖动内容，如果为空则全部清除
+    obj.getData(type);|根据类型检索数据，未找到返回空字符串''
+    obj.setData(type,data);|为一个给定的类型设置数据。如果该数据类型不存在，它将添加到的末尾
+    obj.setDragImage(imgElement,offsetX,offsetY);|自定义一个期望的拖动时的图片。大多数情况下，这项不用设置，因为被拖动的节点被创建成默认图片。
+
+    - [流程简介](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations)  
+    1 为原元素设置可拖动属性 dragable='true'  
+    2 为原元素设置 开始拖动事件 ondragstart="dragstart_handler(event)"  
+    3 在开始拖动事件中设置拖动数据 event.setData()  
+    4 在开始拖动事件中设置拖动反馈图像 event.setDragImage()  
+    5 在开始拖动事件中设置允许的拖动效果event.dataTransfer.effectAllowed 默认全部允许  
+    6 进入目标元素时，触发 dragenter 和 dragover 事件，可以在这两个事件中设置 event.preventDefault();阻止默认的不能放置事件。注：一般是 在 dragover 中阻止，在 dragenter 和 dragleave 中设置放置目标样式反馈。可以在此过程中检测 dropEffect 的值，进行约束。  
+    7 松开鼠标时，执行 drop 事件，先调用 event.preventDefault() 阻止默认事件，防止拖放链接时打开，判断是否为放置目标，event.getData();获取数据，将数据放置到目标中 appendChild,innerHTML等。  
+    8 完成时，调用 dragend 事件，恢复目标元素样式反馈。
+>    兼容 IE 10=+
 
 + 本地存储 [Local Storage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
+    - 判断是否支持 Storage
+    ```javascript
+        typeof(Storage)==='undefined'
+    ```
+    - 分为 local Storage 和 session Storage (本地，5M 左右，保存时间不同)；
+    - 属性 length ，返回 保存的键值数据项的个数。
+    - Storage 存储的都是 string 类型，在存入时会自动调用其 toString() 方法，防止存入对象变为 '[object Object]'，应用 JSON 转换
+    - 主要方法  
 
+    方法名|解释
+    --|--
+    key(index)|根据索引返回对应的键名(浏览器决定顺序，不可靠，尽量不用)
+    getItem('key')|获取键名为key的值
+    setItem('key','val')|设置或新建一条键名为key键值为val的数据
+    removeItem('key')|删除一条键名为key的数据
+    clear()|清空所有数据  
+>   兼容 IE 8=+
 
++ [Web Worker](https://www.w3school.com.cn/html/html5_webworkers.asp)
+    - Web worker 是运行在后台的 JavaScript，不会影响页面的性能。
+    - 检测浏览器支持```typeof(Worker) !== 'undefined'```
+    - 创建 Worker 实例 。```w = new Worker("demo_workers.js");```
+    - 实例的属性事件句柄  
+        1   ```w.onmessage=function(e){}```当接受到传回的信息时执行，传回的数据在 e.data 里  
+        2  ```w.onmessageerror=function(e){}```当执行发送错误是回调。
+    - 实例的方法  
+        1  ```postMessage()``` 发送消息到页面。  
+        2  ```w.terminate()``` 立即停止执行。
+    - 重新启用已停止的 Worker 可先将 实例 重置为 undefined
+>   兼容IE 10=+
+
++ [HTML5 应用缓存](https://www.w3school.com.cn/html/html5_app_cache.asp)
+    - 使用应用程序缓存，通过创建 cache manifest 文件，可轻松创建 web 应用的离线版本。
+    - 使文档启用应用缓存，在 html 标签中设置 manifest 属性为 缓存配置文件 Manifest lujin
+    - Manifest 内容
+        ```
+            CACHE MANIFEST
+            # 2012-02-21 v1.0.0
+            /logo.gif
+            /main.js
+            
+            NETWORK:
+            login.asp
+            
+            FALLBACK:
+            /html/ /offline.html
+        ```
+
++ [HTTP 状态消息](https://www.w3school.com.cn/tags/html_ref_httpmessages.asp)
+    - 1xx 信息  
+    - 2xx 成功
+    - 3xx 重定向
+    - 4xx 客户端错误
+    - 5xx 服务器错误
 
 ### 其他
 - 注释：```<!-- 这是注释，不会被浏览器解析 -->```，注意 ___条件注释___
 - 空格：浏览器解析显示页面时，会将多个空格或空行合并为一个空格。确实需要多个空格时使用 ```&nbsp; &ensp; &emsp;```代替空格<kbd>space</kbd>。  
+- Doctype 不正确或未声明会导致文档以混杂模式呈现  
+- 置换元素和不可置换元素  
+    + 置换元素：浏览器根据标签或属性，决定元素的具体显示。如通过 ```<img>``` 标签的 ```src``` 属性，显示为一张图片；通过 ```<input>``` 的 ```type``` 属性显示 为输入框；同样的还有 ```<textarea>,<select>,<video>```等
+    + 不可置换元素：浏览器不改变显示内容，直接呈现给用户，如```<label>,<span>,<p>```等
+- input 中 disable 与 readonly 的区别
+    + readonly=true ，元素只读无法编辑，但脚本可以更改值，能随表单提交。
+    + disable=true ，元素禁用，脚本也无法更改内容，不会被表单提交。
+- src 与 href 的区别
+    - src 是 将指向的内容下载并嵌入文档内，如 img 和 script
+    - href 是 指向资源地址，建立连接。
 
 
 
