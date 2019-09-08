@@ -105,9 +105,9 @@ p{background-color:blue;}
 目标位置 | target
 ---|---
 新标签页 | _blank
-当前页|_self
-上级窗口|_parent
 顶层窗口|_top
+上级窗口|_parent
+当前页|_self
 指定框架<br />(name="framename")|framename
   
 + 在新的标签页打开 ```http://www.w3school.com.cn/html/html_links.asp``` 页面并定位到 __tips__ 描点。
