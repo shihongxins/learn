@@ -421,7 +421,7 @@ form*|对```<form>```表单的属性覆盖等
             
             NETWORK:
             login.asp
-            
+
             FALLBACK:
             /html/ /offline.html
         ```
@@ -445,7 +445,7 @@ form*|对```<form>```表单的属性覆盖等
     + disable=true ，元素禁用，脚本也无法更改内容，不会被表单提交。
 - src 与 href 的区别
     - src 是 将指向的内容下载并嵌入文档内，如 img 和 script
-    - href 是 指向资源地址，建立连接。
+    - href 是 指向资源地址，建立连接
 
 
 
