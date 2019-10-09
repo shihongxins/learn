@@ -9,7 +9,7 @@
 - 大部分标签元素拥有属性，属性提供了这个元素的更多信息。
 - 属性总是写在元素的开始标签中。
 - 属性一般以键值对出现，如：type="text"  
-大部分元素都拥有一下属性
+大部分元素都拥有一下属性 [全局属性](https://developer.mozilla.org/zh-CN/docs/Glossary/Global_attribute)
 
 属性 | 说明
 ---|---
@@ -17,6 +17,11 @@ id | 元素的唯一id
 class | 元素的类名
 style | 元素的样式
 title | 元素的额外信息，显示提示
+lang | 元素的语言
+data-* | 元素的自定义属性，可通过getAttribute('data-*')和dataset['*']获取
+draggable | 元素是否可以拖动
+tabindex | 元素聚焦顺序
+contenteditable | 元素内容是否可以编辑，值为""\|true\|false
 
 ### 块级元素与内联元素
 - 元素一般分为两个重要内别，块级元素和内联元素。
@@ -124,6 +129,7 @@ p{background-color:blue;}
 通过```<img />```标签在页面中插入显示图像。  
 + 用 src="" 属性指定图像位置
 + 用 alt="" 属性作为替代文本
++ 用 srcset 与 sizes 属性实现自适应图片
 + usemap="#mapid" 属性指定图像映射
 >图像映射：用```<map>和<area>```标签，在图像上分区域进行传教不同区域的链接  
 >```html
@@ -176,9 +182,9 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
 + ```<base>```用于指定一个文档内的相对 url 的基准根 url，和新文档打开的位置，分别用 href 和 target 实现。
 + ```<meta>```用于表示其他头部标签不能表示的元数据信息。主要有：
     - charset="UTF-8" 设置页面编码(HTML 5)，注意要与文档保存编码一致。
+    - content="" 指定 http-equiv 或 name 属性的值。
     - http-equiv="X-UA-Compatible" (设置IE8以后的浏览器对文档的渲染模式)，其 content="IE=Edge,chrome=1" 
     - http-equiv="content-type" ，设置文档编码(HTML 4)，其 content 值为 "text/html;charset=UTF-8"
-    - content="" 指定 http-equiv 或 name 属性的值。
     - http-equiv="content-security-policy"内容安全策略?
     - http-equiv="default-style"，默认样式， 它的 content 的值等于 ```<link>或<style>```的 name 的值。
     - http-equiv="refresh" ，刷新页面 ，它的 content 值为正整数或新地址，表示 几秒之后刷新页面或转到新地址。
@@ -308,6 +314,7 @@ form*|对```<form>```表单的属性覆盖等
 ```<figure>```|组合一段内容为引用单元，<br/>图片，代码块，表格等。| IE 9=+
 ```<figcaption>```|```<figure>```组合的说明/标题| IE 9=+
 ```<progress>```|进度条，以 max 和 value 表示进度，<br />省略则为重复动画| IE 10=+
+```<meter>```|进度条，用 min max low high optimum value 表示值样式，form 属性与一个form元素关联| Edge=+
 ```<details>```|详细信息折叠\|展示，不支持时直接显示| 不支持IE 与 Edge，引用 [polyfill](https://github.com/mfranzke/datalist-polyfill) IE 9=+ 
 ```<summary>```|详细信息的概要| 不支持 IE 与 Edge，引用 [polyfill](https://github.com/mfranzke/datalist-polyfill) IE 9=+ 
 ```<mark>```|高亮文本，表示关联系，重要性请用```<strong>```| IE 9=+
@@ -367,7 +374,7 @@ form*|对```<form>```表单的属性覆盖等
     obj.setDragImage(imgElement,offsetX,offsetY);|自定义一个期望的拖动时的图片。大多数情况下，这项不用设置，因为被拖动的节点被创建成默认图片。
 
     - [流程简介](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations)  
-    1 为原元素设置可拖动属性 dragable='true'  
+    1 为原元素设置可拖动属性 draggable='true'  
     2 为原元素设置 开始拖动事件 ondragstart="dragstart_handler(event)"  
     3 在开始拖动事件中设置拖动数据 event.setData()  
     4 在开始拖动事件中设置拖动反馈图像 event.setDragImage()  
@@ -389,11 +396,13 @@ form*|对```<form>```表单的属性覆盖等
 
     方法名|解释
     --|--
-    key(index)|根据索引返回对应的键名(浏览器决定顺序，不可靠，尽量不用)
+    key(index)|根据索引返回对应的键名
     getItem('key')|获取键名为key的值
     setItem('key','val')|设置或新建一条键名为key键值为val的数据
     removeItem('key')|删除一条键名为key的数据
     clear()|清空所有数据  
+
+    - storage 发生变化时都会出发 storage 事件，可以被监听到。
 >   兼容 IE 8=+
 
 + [Web Worker](https://www.w3school.com.cn/html/html5_webworkers.asp)
@@ -407,11 +416,12 @@ form*|对```<form>```表单的属性覆盖等
         1  ```postMessage()``` 发送消息到页面。  
         2  ```w.terminate()``` 立即停止执行。
     - 重新启用已停止的 Worker 可先将 实例 重置为 undefined
+    - Web Worker 可以触发 stroage 事件
 >   兼容IE 10=+
 
 + [HTML5 应用缓存](https://www.w3school.com.cn/html/html5_app_cache.asp)
     - 使用应用程序缓存，通过创建 cache manifest 文件，可轻松创建 web 应用的离线版本。
-    - 使文档启用应用缓存，在 html 标签中设置 manifest 属性为 缓存配置文件 Manifest lujin
+    - 使文档启用应用缓存，在 html 标签中设置 manifest 属性为 缓存配置文件 Manifest 路径。如：```<html manifest="/cacheSet.appcache">```  
     - Manifest 内容
         ```
             CACHE MANIFEST
