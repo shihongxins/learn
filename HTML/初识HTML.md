@@ -148,7 +148,7 @@ coords|x,y,r|x1,y1,x2,y2|x1,y1,x2,y2,...|x1,y1,x2,y2
 + 表格边框显示，用border="1"属性
 + 空单元格会被隐藏，解决 填充 ```&nbsp;```
 + 表格标题，用```<caption>```标签
-+ ```<td>与<th>```跨行和跨列,用 colspan 和 rowspan 属性
++ ```<td>与<th>```跨行和跨列,用 rowspan(跨行) 和 colspan(跨列) 属性
 + 内容对齐
     - 水平：align="left|center|justfy|right"
     - 垂直：valign="top|middle|baseline|bottom"  
@@ -199,6 +199,13 @@ src 属性为链接地址，frameborder='0' 设置不显示边框 ，name 属性
     minimum-scale | 0.0 ~ 10.0 | 最小缩放
     maximum-scale | 0.0 ~ 10.0 | 最大缩放
     user-scalable | "yes"\|"no" | 是否允许用户手动缩放
+
++ ```<link>```外部资源连接元素，常用于链接外部样式表和站点图标。
+    - href 资源链接地址
+    - media 媒体查询条件，按照查询结果加载不同的样式表
+    - sizes 图标文件大小
+    - type 资源类型，如：text/css、image/png、image/x-icon等
+    - rel 资源与文档的关系，如 stylesheet、shortcut icon、apple-touch-icon-precomposed 等
 
 ### HTML字符实体
 + HTML中的预留符号必须用实体表示，如 \> \< 符号可能被解析为标签，影响显示，应使用 ```&gt;``` ```&lt;```表示。
