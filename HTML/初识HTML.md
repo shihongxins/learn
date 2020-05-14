@@ -463,7 +463,10 @@ form*|对```<form>```表单的属性覆盖等
 - src 与 href 的区别
     - src 是 将指向的内容下载并嵌入文档内，如 img 和 script
     - href 是 指向资源地址，建立连接
-
+- ol 的属性
+    - type:a|A|i|I|1; 表示 有序列表的 编号类型，字母，罗马数字，阿拉伯数字。
+    - start:<number>; 表示编号的开始值。
+    - reverse:<boolean>; 表示正序或反序。
 
 
  
