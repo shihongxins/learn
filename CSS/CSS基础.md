@@ -61,7 +61,38 @@
 + 权重：!important > 内联 > id > class > 伪类 > 标签 > 通用 `*` > 默认  。最后属性生效的值是取权重最高的，如果权重一样，参考就近原则。
 
 ### CSS的值
-+ 类别：[number] [length] [keywords] [function] [expression]
++ 类别：[number] [length] [keywords] [function] [expression] [color]
 + 单位：
   - 相对长度单位：px em rem ex
   - 相对视口单位：vw vh vmin vmax
+
+### 背景样式[background]
++ CSS2
+  - background-color:[color];
+  - background-img:url();
+    + 多个背景图用分号;隔开
+  - background-repeat:no-repeat|repeat-x|repeat-y|repeat|space|round;
+    + 两个值表示 水平 垂直
+    + 多个背景图用分号;隔开
+  - background-position:[keyword]top|right|bottom|left|center|[number]|[length]
+    + 多个背景图用逗号,隔开
+  - background-attachment:scroll|fixed|local
+    + 多个背景图用逗号,隔开
++ CSS3
+  - background-clip:border-box|padding-box|content-box|text;
+  - background-origin:border-box|padding-box|content-box;
+    + 背景左上角绘制起点
+  - background-size:[keyword]auto|contain|cover|[number]|[length]
+    + 两个值时表示 水平 垂直
+  
+### 字体[font]
++ 类别：Serif 衬线体，Sans-Serif 无衬线体，Monospace 等宽体，Cursive 手写体，Fantasy 艺术体
++ font-family:Times,Georgia,'Segoe UI','\5FAE\8F6F\96C5\9ED1';
+  - 设置备选字体用逗号,隔开
+  - 多单词字体用单引号'引起
+  - 中文字体名可用unicode编码,`escape()`
++ font-style:normal|italic|oblique
+  - italic和oblique都是斜体区别是，italic是用该字体的斜体版，oblique是将字体倾斜(即使没有斜体版)
++ font-size:[length]
+  - IE8不支持em
++ font-weight:normal|lighter|light|bold|bolder
