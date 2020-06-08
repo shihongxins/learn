@@ -96,3 +96,48 @@
 + font-size:[length]
   - IE8不支持em
 + font-weight:normal|lighter|light|bold|bolder
+
+### 列表[ul,ol,dl]
++ list-style-type:disc|circle|square|decimal|...[参考](https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style-type)
++ list-style-image:none|url();
++ list-style-position:outside|inside;
++ list-style:list-style-type|list-style-image|list-style-position;
+
+### 表格[table]
++ caption-side:top|bomtton;
++ table-layout:auto|fixed;
+  - 表格宽度计算方法，auto按内容，fixed按第一行。
++ border-spacing:[length]|[length] [length];
+  - 两个值时表示水平 垂直；
++ empty-cells:hide|show;
++ border-collapse:separete|collapse;
+  - 当 `border-collapse:collapse;` 时此属性会覆盖 border-spacing,效果同 0;empty-cells,效果同 show;border-radius,效果同none;
+
+### 文本[text]
++ 自身样式
+  - color:[color];
+  - text-transform:none|capitalize|uppercase|lowercase;
+  - text-derection-line:overline|line-through|underline;
+  - text-derection-color:[color];
+  - text-derection-style:solid|dotted|wavy;
+  - text-decretion:text-derection-line|text-derection-color|text-derection-style;
+    + 三色一线一样
+  - text-shadow:x y blur color;
+    + 多个阴影用,隔开；
++ 段落布局
+  - text-indent:[length];首行缩进
+  - letter-spacing:[length];字符间距
+  - word-spacing:[length];词间距
+  - line-height:[length]|[number];行高,[number]类型时为font-size的倍数,推荐 1.5-2;
+  - text-algin:start|left|center|justify|right|end;文本水平对齐;
+  - derection:ltr|rtl;文本水平(对其)方向
+  - writing-mode:horizontal-tb|vertical-lr|vertical-rl;多行文本书写方向;
+  - white-space:pre|pre-wrap|pre-line|nowrap|normal;处理空白符与换行制表符;
+  - text-overflow:clip|ellipsis;不换行时溢出处理;
+  - word-wrap|overflow-wrap:normal|break-word|anywhere;长不可分割单词强制折断处理;
+  - word-break:normal|break-all|keep-all|break-word;
+    + normal CJK折行,非CJK长单词溢出
+    + break-all 全部折断
+    + keep-all 全部不折断包括CJK
+    + break-word CJK折行，非CJK长单词折行,等效于 word-break:normal;overflow-wrap:break-word;
+  - line-break:auto|loose|normal|strict|anywhere;
