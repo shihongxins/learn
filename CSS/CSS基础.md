@@ -70,6 +70,7 @@
 ### 背景样式[background]
 + CSS2
   - background-color:[color];
+    + 父项应用背景色，子项应用边框圆角时，会出现背景色溢出圆角。应将背景色也应用到子项。
   - background-img:url();
     + 多个背景图用分号;隔开
   - background-repeat:no-repeat|repeat-x|repeat-y|repeat|space|round;
@@ -117,7 +118,7 @@
   - 两个值时表示水平 垂直；
 + empty-cells:hide|show;
 + border-collapse:separate|collapse;
-  - 当 `border-collapse:collapse;` 时此属性会覆盖 border-spacing,效果同 0;empty-cells,效果同 show;border-radius,效果同none;
+  - 当 `border-collapse:collapse;` 时此属性会覆盖 border-spacing,效果同 0;empty-cells,效果同 show;border-radius,效果同none;并使tr的边框生效，否则tr的边框会以th/td的为准。
 
 ### 文本[text]
 + 自身样式
@@ -199,3 +200,17 @@
       + line-height = height 可以用来居中 __单行__ 文本。
       + inline-block 的特点：既呈现 inline 的特点(不占据一整行，宽度由内容决定)，又呈现 block 的特点(可以设置宽高和内外边距)。
       + inline-block 的作用、副作用和解决办法：当要横向并列暂时一些内容(如导航条，按钮组)时，除了浮动，还可以将元素设置 `display:inline-block;` ；副作用，由于标签之间有换行等符号会被合并为一个空格导致元素之间有空隙；解决办法1，去除文件标签间的其他符号，解决办法2，先将父元素的字体大小设为0，在将元素的大小改为合适的大小。
+
+### 其他注意要点
++ 在设置页面字体时，严格要求在`font-family`最后添加上一种或多种通用字体类别，使用户客户端在无指定的字体时，也以一种通用的字体类别显示。
++ 段落样式中，行高`line-height`最好在1.5~2倍之间。
++ 背景色溢出圆角问题：父项设置圆角，子项设置背景色，可能会溢出。
++ CSS3 选择器：IE8仅支持 General siblings (element1~element2) and Attribute selectors [attr^=val], [attr$=val], and [attr*=val]。IE9=+支持全部。
++ `:first-of-type`选中的一定是在某一类标签中选择合适前面条件的元素，如`.btn:first-of-type`会先将子元素分为几类，再在每一类中选第一个元素，接着在选择的元素中再选择有`.btn`的，始终理解CSS选择器的匹配是从右往左，从子到父。
++ CSS3 圆角`border-radius`：IE9=+支持。
++ 表格行间隔背景色用`:nth-child(odd|even)`实现。
++ 如果要对表格应用圆角`border-radius`，则需要表格设置`border-collapse:separate;`及在单元格上应用边框`border`和背景色`background-color`，否则可能会出现圆角失效，或者背景色溢出等问题。
++ 用`border`绘制三角形时，`border-width`的值为三角形的高。
++ 可用`<a>`来代替`<botton>`,`<button>`设置`display:inline-block;`时，鼠标指针会变为文本，需要重新设置`cursor:pointer;` 。
++ 让元素透明，IE8用：`filter:alpha(opacity=0~100);` ，其他用 `opacity:0~1;` 。
++ 让元素不可见的方法：`display:none;` , `visibility:hidden;` , `opacity:0;` 。

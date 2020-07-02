@@ -1,0 +1,366 @@
+<Doctype>
+    <html>
+
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+        <meta charset="utf-8">
+        <title>CSS基础练习</title>
+        <meta name="viewport"
+            content="width=device-width,innitail-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <style>
+            div[id^=exercise_]{
+                width: 600px;
+                margin: 0 auto;
+            }
+
+            #exercise_1 p {
+                margin-top: 30px;
+                padding: 18px 16px;
+                line-height: 1.5;
+            }
+            #exercise_1 .box1 {
+                border: 2px solid grey;
+                border-radius: 3px;
+            }
+            #exercise_1 .box2 {
+                border: solid #f44336;
+                border-width: 0 6px;
+                background: #ffe7e7;
+            }
+            #exercise_1 .box3 {
+                border: solid #FEEB3B;
+                border-width: 6px 0;
+                background-color: #FFFFD7;
+            }
+            #exercise_1 .box4 {
+                border: 2px solid #4CAF50;
+                border-bottom-width: 6px;
+                background-color: #E8FFE7;
+            }
+
+            #exercise_2 ul {
+                text-align: center;
+                list-style: none;
+            }
+            #exercise_2 li {
+                display: inline-block;
+            }
+            #exercise_2 botton {
+                display: inline-block;
+                border-radius: 3px;
+                padding: 8px 10px;
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            #exercise_2 botton:hover {
+                box-shadow: 0 8px 16px 0 gray;
+            }
+            #exercise_2 .steal {
+                color: #fff;
+                background: #028c7e;
+            }
+            #exercise_2 .yellow {
+                background: yellow;
+            }
+            #exercise_2 .orange {
+                background: orange;
+            }
+            #exercise_2 .red {
+                color: #fff;
+                background: red;
+            }
+            #exercise_2 .green {
+                color: #fff;
+                background: green;
+            }
+
+            #exercise_3 table{
+                width: 100%;
+                text-align: left;
+                margin-top: 20px;
+                border-spacing: 0;
+            }
+            #exercise_3 th,#exercise_3 td{
+                padding: 8px;
+            }
+            #exercise_3 table tr>*{
+                border-bottom: 1px solid #ccc;
+            } 
+            #exercise_3 tbody tr:nth-child(even){
+                background: #f1f1f1;
+            }
+            #exercise_3 #table_1{
+                border: solid #ccc;
+                border-width: 0 1px;
+            }
+            #exercise_3 #table_1 thead th{
+                color: #fff;
+                background-color: #67ac5b;
+            }
+            /* 实现表格圆角IE>=9 */
+            #exercise_3 table{
+                border-radius: 10px;
+            }
+            #exercise_3 table :first-child tr:first-of-type :first-child{
+                border-top-left-radius: 10px;
+            }
+            #exercise_3 table :first-child tr:first-of-type :last-child{
+                border-top-right-radius: 10px;
+            }
+            #exercise_3 table :last-child tr:last-of-type :first-child{
+                border-bottom-left-radius: 10px;
+            }
+            #exercise_3 table :last-child tr:last-of-type :last-child{
+                border-bottom-right-radius: 10px;
+            }
+
+            #exercise_4 div{
+                height: 0;
+                width: 0;
+                margin: 10px auto;
+                border: 50px solid;
+                border-color: unset;
+                border-color: rgba(0, 0, 0, 0);
+                border-color: transparent;
+            }
+            #exercise_4 #t1{
+                border-color: blue yellow green red;
+            }
+            #exercise_4 #t2{
+                border-top-color:blue;
+            }
+            #exercise_4 #t3{
+                border-right-color:yellow;
+            }
+            #exercise_4 #t4{
+                border-bottom-color:green;
+            }
+            #exercise_4 #t5{
+                border-left-color:red;
+            }
+            #exercise_4 #t6{
+                border-left-color:red;
+                border-bottom-color:red;
+            }
+            #exercise_4 #t7{
+                border-right-color:green;
+                border-top-color:green;
+            }
+
+            #exercise_5 #card{
+                width: 150px;
+                margin: auto;
+                border: 1px solid #ccc;
+            }
+            #exercise_5 #card img{
+                width: 150px;
+            }
+            #exercise_5 #card h3{
+                padding: 0 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow:ellipsis;
+            }
+            #exercise_5 #card a{
+                color: red;
+                text-decoration: none;
+            }
+            #exercise_5 #card p{
+                text-indent: 2em;
+                padding: 0 10px;
+            }
+            
+            #exercise_6 .page{
+                margin: 10px auto;
+                text-align: center;
+                color: #ccc;
+            }
+            #exercise_6 .title{
+                color: #84938a;
+            }
+            #exercise_6 ul{
+                padding: 0;
+            }
+            #exercise_6 li{
+                display: inline-block;
+                list-style: none;
+                margin: 0 4px;
+            }
+            #exercise_6 a,#exercise_6 a:link,#exercise_6 a:visited,#exercise_6 a:hover,#exercise_6 a:active{
+                text-decoration: none;
+            }
+            #exercise_6 .btn{
+                display: inline-block;
+                border-radius: 3px;
+                padding: 4px 6px;
+                color: white;
+                background: #72b890;
+                cursor: pointer;
+            }
+            #exercise_6 .btn:hover{
+                filter: alpha(opacity=70);
+                opacity: 0.7;
+            }
+            #exercise_6 .btn:active{
+                filter: alpha(opacity=100);
+                opacity: 1;
+            }
+            #exercise_6 img{
+                width: 150px;
+            }
+            #exercise_6 .footer a{
+                color: #72b890;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="exercise_1">
+            <h2>1 CSS实现如下边框效果</h2>
+            <p class="box1">
+                “UI 设计”和“前端代码实现”在实际工作中既像“冤家”又像“情人”。此号目的：把“冤家”、“情人”变成“内人”。
+                前期咱们聊基础，后期咱们聊提高。 一切从零开始，一点一点到一万，一步一步做大佬！
+            </p>
+            <p class="box2">
+                “UI 设计”和“前端代码实现”在实际工作中既像“冤家”又像“情人”。此号目的：把“冤家”、“情人”变成“内人”。
+                前期咱们聊基础，后期咱们聊提高。 一切从零开始，一点一点到一万，一步一步做大佬！
+            </p>
+            <p class="box3">
+                “UI 设计”和“前端代码实现”在实际工作中既像“冤家”又像“情人”。此号目的：把“冤家”、“情人”变成“内人”。
+                前期咱们聊基础，后期咱们聊提高。 一切从零开始，一点一点到一万，一步一步做大佬！
+            </p>
+            <p class="box4">
+                “UI 设计”和“前端代码实现”在实际工作中既像“冤家”又像“情人”。此号目的：把“冤家”、“情人”变成“内人”。
+                前期咱们聊基础，后期咱们聊提高。 一切从零开始，一点一点到一万，一步一步做大佬！
+            </p>
+        </div>
+        <div id="exercise_2">
+            <h2>2 CSS实现如下按钮效果</h2>
+            <ul>
+                <li><botton class="steal">steal</botton></li>
+                <li><botton class="yellow">yellow</botton></li>
+                <li><botton class="orange">orange</botton></li>
+                <li><botton class="red">red</botton></li>
+                <li><botton class="green">green</botton></li>
+            </ul>
+        </div>
+        <div id="exercise_3">
+            <h2>3 CSS实现如下两个表格效果</h2>
+            <table id="table_1">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Adam</td>
+                        <td>Johnson</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <td>Bo</td>
+                        <td>Nilsson</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>Ross</td>
+                        <td>35</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="table_2">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Adam</td>
+                        <td>Johnson</td>
+                        <td>67</td>
+                    </tr>
+                    <tr>
+                        <td>Bo</td>
+                        <td>Nilsson</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Mike</td>
+                        <td>Ross</td>
+                        <td>35</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="exercise_4">
+            <h2>4 用CSS实现如下三角形</h2>
+            <div id="t1"></div>
+            <div id="t2"></div>
+            <div id="t3"></div>
+            <div id="t4"></div>
+            <div id="t5"></div>
+            <div id="t6"></div>
+            <div id="t7"></div>
+        </div>
+        <div id="exercise_5">
+            <h2>5 实现如下卡片效果，重点单行文本溢出加...</h2>
+            <div id="card">
+                <img src="./img/CSS base exercise_5.jpg" alt="单行文本溢出加...背景图">
+                <h3><a href="#">CSS基础练习，实现单行文本溢出加...</a></h3>
+                <p>
+                    单行文本溢出重点是：1.容器固定宽度；2.容器内文本不自动换行；3.容器溢出内容隐藏不显示；4.容器内溢出文本末尾添加符号...；
+                </p>
+            </div>
+        </div>
+        <div id="exercise_6">
+            <h2>6 编写一下页面</h2>
+            <div class="page">
+                <h1 class="title">CSS 基础知识</h1>
+                <p class="describe">学习 CSS基础知识，并练习</p>
+                <ul class="tabBtn">
+                    <li><botton class="btn">项目1</botton></li>
+                    <li><botton class="btn">项目2</botton></li>
+                    <li><botton class="btn">项目3</botton></li>
+                    <li><botton class="btn">项目4</botton></li>
+                    <li><botton class="btn">项目5</botton></li>
+                </ul>
+                <img src="./img/CSS base exercise_6.jpg" alt="CSS基础练习练习6">
+                <ul class="optionBtn">
+                    <li><botton class="btn">查看源代码</botton></li>
+                    <li><botton class="btn">使用说明</botton></li>
+                </ul>
+                <div class="footer">作者：<a href="#">Shihongxin</a></div>
+            </div>
+        </div>
+    </body>
+
+    </html>
