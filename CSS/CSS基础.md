@@ -179,9 +179,10 @@
       + 块盒子的的水平=父元素的`height=margin-top+border-top+padding-top+content-height+padding-bottom+border-bottom+margin-bottom`;
       + 其中只有 `height margin-top margin-bottom` 的只可以为 `auto`，其余的值要么为确定的[length]要么默认0。且设置 `margin-top margin-bottom` 为 `auto` 无效。都会重置为 0,因此不能通过设置垂直方向的 `margin-top margin-bottom` 为 `auto` 来垂直居中元素是不可能的。
     - 外边距的合并
-      + 当多个元素相邻或包含时，其垂直方向的外边距 `margin` 会合并为一个，水平方向不合并。
-      + 一个空元素，只存在外边距时，它的上下外边距会合并为一个。
-      + 合并方式：如果有 __两个负 `margin`__ 时，合并为绝对值最大的那个；如果有 __一正一负 `margin`__ 时，取值用正减去(负的绝对值)，__两个都是正的__ 参考块盒子的垂直格式化，外边距合并取最大值。
+      + 兄弟元素合并：当相邻兄弟元素上下排列时，垂直方向上，前一个元素的下外边距会和后一个元素的上外边距合并为一个。解决：设置浮动，设置 `display:inline-block` ，给他们俩设置父元素，并使父元素触发BFC。
+      + 父子元素合并：当一个元素包含另一个元素，且父元素没有设置边框或内边距，两个元素的上外边距之间没有隔开，则会合并为一个。解决：给父元素设置 `border` 或 `padding` 使其外边距隔开。
+      + 一个空元素，只存在外边距时，它的上下外边距会合并为一个。解决：给元素设置 `border` 或 `padding` 或触发BFC。
+      + 合并方式：如果有 __两个负 `margin`__ 时，合并为绝对值最大的那个；如果有 __一正一负 `margin`__ 时，取值用正加上负的和，__两个都是正的__ 参考块盒子的垂直格式化，外边距合并取最大值。
     - 负 `margin`
       + 块盒子的水平之和为父元素的 `width` ，当有 __负 `margin`__ 存在时，可能会引起块元素的 `width:auto` 变得大于父元素的 `width` ，具体计算先参考块盒子的水平格式化说明，替换后在计算后面的 `auto` 值。
       + 块盒子的垂直方向的外边距会影响元素的位置，`margin-top` 为负值时，块盒子自身及其后面的元素均会上移，`margin-bottom` 为负值时，块盒子下面的元素会上移。
@@ -189,14 +190,24 @@
       + 匿名文本：没有包含在行内元素中的文本。
       + 非替换元素：包含元素本身的文本包含在元素结构之内。
       + 替换元素：用其他内容替换元素结构，如 `img input` 。
-      + 文本行：![文本行](./img/line-height.png)  
+      + 内容区：![内容区](./img/inline-box-content.png)
+        - 非替换元素中，内容区为元素中各字体的em框构成的，即内容区的高度为 `font-size` 的值。
+        - 替换元素中，内容区的高度为元素的 `height+padding+border+margin` 的和。
+      + 文本行：![文本行](./img/inline-box-text.png)  
+      + 行间距：**行间距只应用于非替换元素**，行间距等于 `line-height` - `font-size` 的值，被分为两半放在内容区的上下(上、下半间距) 
+      + 行内框：行内各元素生成的对应的行内盒子。
+        - 非替换元素：行内框高度 = `font-size` + 行间距 = `line-height`。
+        - 替换元素：1 与文本无关(如 `img`)，行内框高度 = 元素 `height` + `padding` + `border` + `margin` ； 2 与文本有关(如 `input button`)， 行内框高度取值为 (`font-size`+ 行间距 = `line-height`) 和 (元素 `height` + `padding` + `border` + `margin`) 的最大值，即谁大取谁。
+      + 行高：`line-height` = `font-size`+行间距 = 两基线间的距离。
+      + 行框：整行生成的对应文本盒子(多个行内框组成)，那么行框的上边界为行内框中最高的上边界，行框的下边界为行内框中最低的下边界。
+      + 基线：每个元素有自己的基线，整行有自己的基线，行内元素的位置为基线对齐加上偏移量。
     - 行内盒子格式化
       + `line-height` 有继承性。
       + `vertical-algin` 只能用于行内元素和替换元素，没有继承性。
       + `vertical-algin` [取值](https://www.yuque.com/olizhao/qdywxs/css_08#81a32804)
     - 理解
       + `line-height:2;` 与 `line-height:200%;`的区别：它们都表示行高取字体的2倍。但是当他们用在父元素，且子元素字体大小不一致时，就出现差异。由于继承性，子元素会继承父元素的 `line-height:2;` ，那么子元素行高会因为字体大小不同而不一致 __行高不统一__ ；而当父元素 `line-height:200%;` 时会先将其换算为具体的值 如 16px*200%=32px ，子元素再继承 32px ，因此子元素行高会一致， __行高统一__ 。
-      + 行内盒子的边框，边界是由 font-size 和 height 控制的，而不是 line-height 。
+      + 行内盒子的边框，边界是由 `font-size` 和 `height` 控制的，而不是 `line-height` 。
       + line-height = height 可以用来居中 __单行__ 文本。
       + inline-block 的特点：既呈现 inline 的特点(不占据一整行，宽度由内容决定)，又呈现 block 的特点(可以设置宽高和内外边距)。
       + inline-block 的作用、副作用和解决办法：当要横向并列暂时一些内容(如导航条，按钮组)时，除了浮动，还可以将元素设置 `display:inline-block;` ；副作用，由于标签之间有换行等符号会被合并为一个空格导致元素之间有空隙；解决办法1，去除文件标签间的其他符号，解决办法2，先将父元素的字体大小设为0，在将元素的大小改为合适的大小。
@@ -210,7 +221,7 @@
 + CSS3 圆角`border-radius`：IE9=+支持。
 + 表格行间隔背景色用`:nth-child(odd|even)`实现。
 + 如果要对表格应用圆角`border-radius`，则需要表格设置`border-collapse:separate;`及在单元格上应用边框`border`和背景色`background-color`，否则可能会出现圆角失效，或者背景色溢出等问题。
-+ 用`border`绘制三角形时，`border-width`的值为三角形的高。
++ 用`border`绘制三角形时，`border-width`的值为三角形长边的高。
 + 可用`<a>`来代替`<botton>`,`<button>`设置`display:inline-block;`时，鼠标指针会变为文本，需要重新设置`cursor:pointer;` 。
 + 让元素透明，IE8用：`filter:alpha(opacity=0~100);` ，其他用 `opacity:0~1;` 。
 + 让元素不可见的方法：`display:none;` , `visibility:hidden;` , `opacity:0;` 。
