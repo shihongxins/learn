@@ -25,7 +25,7 @@
   
 ### @charset 的作用
 + `@charset` 设置样式表文件使用的字符编码。它必须在最开始处设置，且前面不能有任何字符。
-+ `@chaeset` 在设置一些非ASCII码的值时非常有用。如 content,font-family,注释。
++ `@charset` 在设置一些非ASCII码的值时非常有用。如 content,font-family,注释。
 
 ### CSS选择器 [参考](https://www.w3school.com.cn/cssref/css_selectors.asp) 
 
@@ -171,7 +171,7 @@
 
       情况|说明  
       --|--  
-      三个都不为 auto|格式化属性过分受限，强制 `margin-right:auto;`使其适应父元素的宽。
+      三个都不为 auto|格式化属性过分受限，强制 `margin-right:auto;`使其适应父元素的宽，可能为负值(溢出)。
       一个是 auto|是 auto 的属性自动适应父元素的宽。
       两个是 auto|width不是auto,margin-left,margin-right是auto,元素水平居中；width是auto,任意一margin不是auto,margin是auto的强制为 0，使其width自动适应父元素的宽。
       三个都是 auto|将两个margin改为 0，使 width 适应父元素的宽。
@@ -222,6 +222,5 @@
 + 表格行间隔背景色用`:nth-child(odd|even)`实现。
 + 如果要对表格应用圆角`border-radius`，则需要表格设置`border-collapse:separate;`及在单元格上应用边框`border`和背景色`background-color`，否则可能会出现圆角失效，或者背景色溢出等问题。
 + 用`border`绘制三角形时，`border-width`的值为三角形长边的高。
-+ 可用`<a>`来代替`<botton>`,`<button>`设置`display:inline-block;`时，鼠标指针会变为文本，需要重新设置`cursor:pointer;` 。
 + 让元素透明，IE8用：`filter:alpha(opacity=0~100);` ，其他用 `opacity:0~1;` 。
 + 让元素不可见的方法：`display:none;` , `visibility:hidden;` , `opacity:0;` 。
