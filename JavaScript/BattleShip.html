@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <a href="javascript:void(0);" onclick="startGame();">开始游戏</a>
+    <script>
+        function startGame() {
+            var shipLocation_1, shipLocation_2, shipLocation_3;
+            var userAim, isSunk;
+            var hits, guesses;
+            shipLocation_1 = Math.floor(Math.random() * 5);
+            shipLocation_2 = shipLocation_1 + 1;
+            shipLocation_3 = shipLocation_2 + 1;
+            hits = 0;
+            guesses = 0;
+            isSunk = false;
+            while (!isSunk) {
+                userAim = prompt("请输入一个瞄准的敌舰位置(0~6)！");
+                if (userAim < 0 || userAim > 6) {
+                    alert("请输入一个0到6的数字！");
+                } else {
+                    guesses = guesses + 1;
+                    if (userAim == shipLocation_1 || userAim == shipLocation_2 || userAim == shipLocation_3) {
+                        alert("命中敌舰！");
+                        hits = hits + 1;
+                        if (hits == 3) {
+                            alert("敌舰已被击沉！");
+                            isSunk = true;
+                        }
+                    } else {
+                        alert("未命中！");
+                    }
+                }
+            }
+            var msg = "舰长！你在发射了 " + guesses + " 枚炮弹后击沉了敌舰，命中率：" + (guesses / 3);
+            alert(msg);
+        }
+    </script>
+</body>
+
+</html>
