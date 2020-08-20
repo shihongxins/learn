@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //乘客列表var 
+        passengers = [
+            { name: "Oli", paid: true, ticket: "coach" },
+            { name: "Aman", paid: false, ticket: "firstclass" },
+            { name: "Laden", paid: true, ticket: "firstclass" },
+            { name: "Jobs", paid: true, ticket: "premium" }
+        ];
+        //是否在禁飞名单上
+        function checkNotList(passenger) {
+            return passenger.name == "Laden";
+        }
+        //是否未买票
+        function checkNotPaid(passenger) {
+            return !passenger.paid;
+        }
+        //打印买票信息
+        function printPassenger(passenger) {
+            var message = passenger.name;
+            if (passenger.paid === true) {
+                message = message + " has paid.";
+            } else {
+                message = message + " has not paid.";
+            }
+            console.log(message);
+        }
+        //循环调用函数判断乘客列表
+        function processPassengers(passengers, testFunction) {
+            for (var i = 0; i < passengers.length; i++) {
+                //如果这里为真，即有乘客在禁飞名单或未购票，返回检查不合格
+                if (testFunction(passengers[i])) {
+                    return false;
+                }
+            }
+            //如果前面未返回，执行到这里，说明所有人都合格。
+            return true;
+        }
+        var allPaid = processPassengers(passengers, checkNotPaid);
+        if (!allCanFly) {
+            console.log("The plane can't take off: we have a passenger on the no-fly-list.");
+        }
+        var allCanFly = processPassengers(passengers, checkNotList);
+        if (!allCanFly) {
+            console.log("The plane can't take off: not everyone has paid.");
+        }
+        processPassengers(passengers, printPassenger);
+
+        //按照乘客购票类型提供不同的饮料，返回不同的询问方法
+        function createDrinkOrder(passenger){
+            var orderFunction;
+            if(passenger.ticket==="firstclass"){
+                orderFunction = function(){
+                    alert("Hi "+passenger.name+",would you like some wine?");
+                }
+            }
+            if(passenger.ticket==="premium"){
+                orderFunction = function(){
+                    alert("Hi "+passenger.name+",would you like some cola?");
+                }
+            }
+            if(passenger.ticket==="coach"){
+                orderFunction = function(){
+                    alert("Hi "+passenger.name+",would you like some water?");
+                }
+            }
+            return orderFunction;
+        }
+
+        //按照乘客不同的购票类型提供不同的食物，返回不同的询问方法
+        function createDinnerOrder(passenger){
+            var orderFunction;
+            if(passenger.ticket==="firstclass"){
+                orderFunction = function(){
+                    alert("Hi "+passenger.name+",would you like some chicken?");
+                }
+            }
+            if(passenger.ticket==="premium"){
+                orderFunction = function(){
+                    alert("Hi "+passenger.name+",would you like some pizza?");
+                }
+            }
+            if(passenger.ticket==="coach"){
+                orderFunction = function(){
+                    alert("Hi "+passenger.name+",would you like some peanuts?");
+                }
+            }
+            return orderFunction;
+        }
+        //创建服务一个乘客的方法，方法是询问乘客是否需要饮料和食物
+        function serverPassenger(passenger){
+            var getDrinkOrderFunction = createDrinkOrder(passenger);
+            var getDinnerOrderFunction = createDinnerOrder(passenger);
+            getDrinkOrderFunction();
+            getDinnerOrderFunction();
+        }
+        //创建一个服务所有乘客的方法，方法是依次服务每个乘客
+        function serverAllPassengers(passengers){
+            for(var i=0;i<passengers.length;i++){
+                serverPassenger(passengers[i]);
+            }
+        }
+        serverAllPassengers(passengers);
+    </script>
+</body>
+
+</html>

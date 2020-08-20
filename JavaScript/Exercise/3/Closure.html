@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">click</button>
+    <div id="info"></div>
+    <script>
+        var count = 0;
+        var message = "You clicked me ";
+        window.onload = function(){
+            var btn = document.getElementById("btn");
+            var div = document.getElementById("info");
+            btn.onclick = function(){
+                count++;
+                btn.innerHTML = count;
+                div.innerHTML = message + count + " times!";
+            }
+        }
+    </script>
+</body>
+</html>
